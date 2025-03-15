@@ -1,0 +1,141 @@
+.footer {
+  background-color: var(--info-light);
+  color: var(--text-primary);
+  padding-top: var(--spacing-xxl);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-logo h2 {
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-s);
+}
+
+.footer-logo p {
+  max-width: 350px;
+  opacity: 0.8;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.footer-section h4 {
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-m);
+  font-size: 1.2rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: var(--spacing-s);
+}
+
+.footer-section ul li a {
+  color: var(--text-primary);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.footer-section ul li a:hover {
+  opacity: 1;
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-social li {
+  margin-right: var(--spacing-m);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-l) 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  opacity: 0.7;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+
+.footer-links a {
+  color: var(--text-primary);
+  opacity: 0.7;
+  margin: 0 var(--spacing-s);
+}
+
+.footer-links span {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 992px) {
+  .footer-top {
+    flex-direction: column;
+  }
+
+  .footer-logo {
+    margin-bottom: var(--spacing-l);
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-l);
+  }
+
+  .footer-newsletter form {
+    flex-direction: column;
+  }
+
+  .footer-newsletter input {
+    border-radius: var(--border-radius-m);
+    margin-bottom: var(--spacing-s);
+  }
+
+  .footer-newsletter button {
+    border-radius: var(--border-radius-m);
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    margin-bottom: var(--spacing-s);
+  }
+}
+
