@@ -1,7 +1,7 @@
 .footer {
-  background-color: var(--info-light);
   color: var(--text-primary);
-  padding-top: var(--spacing-xxl);
+  background: var(--accent-light);
+  padding-top: 3rem;
 }
 
 .footer-top {

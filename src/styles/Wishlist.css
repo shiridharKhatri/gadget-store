@@ -170,7 +170,7 @@
 }
 
 .add-to-cart-btn:hover {
-  background-color: #6f4a9b;
+  background-color: var(--primary-dark);
 }
 
 .add-to-cart-btn:disabled {
@@ -238,7 +238,7 @@
 }
 
 .browse-products-btn:hover {
-  background-color: #6f4a9b;
+  background-color: var(--primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(132, 88, 179, 0.2);
 }

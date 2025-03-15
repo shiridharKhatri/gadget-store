@@ -35,6 +35,7 @@ const Navbar = ({ position }) => {
   const navbarRef = useRef(null);
   const menuRef = useRef(null);
   const searchInputRef = useRef(null);
+  const navbarMainRef = useRef(null);
 
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -83,9 +84,22 @@ const Navbar = ({ position }) => {
     navigate(`/search?q=${searchVal}`);
   };
 
+  // useEffect(() => {
+  //   let scrollEvent = (e) => {
+  //     if (window.scrollY > 100) {
+  //       navbarMainRef.current.style.position = "fixed";
+  //     } else {
+  //       navbarMainRef.current.style.position = "relative";
+  //     }
+  //   };
+  //   window.addEventListener("scroll", scrollEvent);
+  //   return () => window.removeEventListener("scroll", scrollEvent);
+  // }, []);
+
   return (
     <header
       className={`navbar-wrapper ${isScrolled ? "scrolled" : ""}`}
+      ref={navbarMainRef}
       style={{
         position,
       }}
@@ -94,7 +108,7 @@ const Navbar = ({ position }) => {
         <div className="navbar-container">
           {/* Logo */}
           <Link to="/" className="navbar-logo">
-            <span className="logo-text">ShopHub</span>
+            <span className="logo-text">LOGO</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -195,7 +209,11 @@ const Navbar = ({ position }) => {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className="btn btn-primary">
+              <Link
+                to="/login"
+                className="btn btn-primary"
+                style={{ marginLeft: "2rem" }}
+              >
                 Login
               </Link>
             )}

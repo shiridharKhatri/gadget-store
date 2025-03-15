@@ -154,7 +154,7 @@ const ProductCard = ({ product }) => {
         <div className="product-rating">
           <div className="stars">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className={`star ${i < Math.floor(product.rating || 4)} ? "filled" : ""`}>
+             <span key={i} className={i < product.rating ? "star filled" : "star"}>
                 <FaStar />
               </span>
             ))}

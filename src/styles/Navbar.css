@@ -1,5 +1,5 @@
 .navbar-wrapper {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -125,7 +125,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-m);
+  gap: .2rem;
 }
 
 .navbar-action-btn {

@@ -29,7 +29,8 @@ main {
 }
 
 .btn:hover {
-  background-color: #6e46a0;
+  background-color: var(--primary-dark);
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -77,6 +78,7 @@ main {
   position: relative;
   margin-bottom: var(--spacing-xl);
   padding-bottom: var(--spacing-m);
+  margin-top: 5rem;
 }
 
 .section-title::after {

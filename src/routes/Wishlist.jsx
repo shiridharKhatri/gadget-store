@@ -94,7 +94,7 @@ const Wishlist = () => {
                 <div className="wishlist-item" key={item.id}>
                   <div className="wishlist-item-image">
                     <img
-                      src={`${import.meta.env.VITE_HOST}/image/products/${item.image[0]}` || "/placeholder.svg"}
+                      src={ "/placeholder.png"}
                       alt={item.title}
                     />
                   </div>

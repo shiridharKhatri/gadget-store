@@ -20,6 +20,7 @@ import Deals from "./routes/Deals"
 import Orders from "./routes/Orders"
 import PrivacyPolicy from "./routes/PrivacyPolicy"
 import TermsAndConditions from "./routes/TermsAndConditions"
+import ChatBubble from "./components/ChatBubble"
 
 function App() {
   const router = createBrowserRouter([
@@ -109,7 +110,12 @@ function App() {
     },
   ])
 
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ChatBubble />
+    </>
+  )
 }
 
 export default App

@@ -153,9 +153,12 @@
 }
 
 .add-to-cart-btn:hover {
-  background-color: var(--secondary);
+  background-color: var(--primary-dark);
   opacity: 1;
 }
+/* .filled{
+  color: #e53935 !important;
+} */
 
 @media (max-width: 768px) {
   .product-image {
