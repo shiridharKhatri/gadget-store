@@ -8,7 +8,7 @@ import ProductCard from "../components/ProductCard"
 import "../styles/Deals.css"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import { Clock, Tag, Percent } from "lucide-react"
+import { Clock, Tag, Percent, ChevronLeft, ChevronRight, AlertCircle, ShoppingBag } from "lucide-react"
 
 const Deals = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -291,7 +291,7 @@ const Deals = () => {
           <div className="container">
             <div className="section-header">
               <div className="section-title-wrapper">
-                <Clock size={24} className="section-icon" />
+                <Clock size={28} className="section-icon" />
                 <h2 className="section-title">Flash Deals</h2>
               </div>
               <div className="countdown-timer">
@@ -350,7 +350,7 @@ const Deals = () => {
                   Experience crystal-clear sound and immersive audio with these premium wireless headphones featuring
                   active noise cancellation and 30-hour battery life.
                 </p>
-                <Link to="/products/headphones-123" className="btn btn-primary">
+                <Link to="/products/headphones-123" className="btn btn-primary btn-large">
                   Shop Now
                 </Link>
               </div>
@@ -369,8 +369,16 @@ const Deals = () => {
           <div className="container">
             <div className="section-header">
               <div className="section-title-wrapper">
-                <Tag size={24} className="section-icon" />
+                <Tag size={28} className="section-icon" />
                 <h2 className="section-title">Weekly Deals</h2>
+              </div>
+              <div className="deals-navigation">
+                <button className="deals-nav-btn">
+                  <ChevronLeft size={20} />
+                </button>
+                <button className="deals-nav-btn">
+                  <ChevronRight size={20} />
+                </button>
               </div>
             </div>
 
@@ -393,11 +401,11 @@ const Deals = () => {
           <div className="container">
             <div className="section-header">
               <div className="section-title-wrapper">
-                <Percent size={24} className="section-icon" />
+                <Percent size={28} className="section-icon" />
                 <h2 className="section-title">Clearance Sale</h2>
               </div>
-              <p className="section-subtitle">Up to 70% off! Limited quantities available.</p>
             </div>
+            <p className="section-subtitle">Up to 70% off! Limited quantities available.</p>
 
             <div className="products-grid" ref={clearanceRef}>
               {clearanceItems.map((product) => (
@@ -426,6 +434,16 @@ const Deals = () => {
                     Subscribe
                   </button>
                 </form>
+                <div className="newsletter-features">
+                  <div className="feature">
+                    <AlertCircle size={16} />
+                    <span>Early access to sales</span>
+                  </div>
+                  <div className="feature">
+                    <ShoppingBag size={16} />
+                    <span>Exclusive subscriber discounts</span>
+                  </div>
+                </div>
               </div>
               <div className="newsletter-image">
                 <img

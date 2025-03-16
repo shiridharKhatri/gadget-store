@@ -111,7 +111,6 @@
   padding: var(--spacing-m);
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .product-name {
@@ -251,47 +250,146 @@
   margin-top: 3rem;
 }
 
-/* Deals Section */
+/* Deals Section - Enhanced */
 .deals-section {
   padding: var(--spacing-xxl) 0;
   background-color: var(--background);
+  overflow: hidden;
+}
+
+.deals-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  margin-top: 5rem;
+}
+
+.deals-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-m);
+  color: var(--primary);
+}
+
+.deals-header p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.deals-slider {
+  position: relative;
+  padding: 0 var(--spacing-l);
 }
 
 .deal-card {
   display: flex;
   align-items: center;
-  background: linear-gradient(
-    135deg,
-    var(--secondary-light) 0%,
-    var(--secondary) 100%
-  );
+  background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
-  padding: var(--spacing-xl);
-  gap: var(--spacing-xl);
-  margin-top: 7rem;
+  box-shadow: var(--shadow-m);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-l);
 }
 
 .deal-content {
   flex: 1;
+  padding: var(--spacing-2xl);
   color: var(--text-primary);
+}
+
+.deal-badge {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-m);
+  border-radius: 30px;
+  margin-bottom: var(--spacing-m);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .deal-title {
   font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: var(--spacing-m);
+  line-height: 1.2;
+  color: var(--primary);
 }
 
 .deal-description {
   font-size: 1.1rem;
   margin-bottom: var(--spacing-l);
-  opacity: 0.9;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.deal-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-l);
+}
+
+.deal-original-price {
+  font-size: 1.5rem;
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+  margin-right: var(--spacing-m);
+}
+
+.deal-sale-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.deal-discount {
+  margin-left: var(--spacing-m);
+  background-color: var(--accent);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-s);
+  border-radius: var(--border-radius-s);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.deal-timer {
+  display: flex;
+  gap: var(--spacing-m);
+  margin-bottom: var(--spacing-l);
+}
+
+.timer-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--accent-light);
+  color: white;
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--border-radius-m);
+  min-width: 70px;
+}
+
+.timer-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.timer-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .deal-image {
   flex: 1;
-  height: 300px;
-  border-radius: var(--border-radius-l);
+  height: 400px;
+  position: relative;
   overflow: hidden;
 }
 
@@ -306,11 +404,61 @@
   transform: scale(1.05);
 }
 
-/* Testimonials */
+.deals-navigation {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-m);
+  margin-top: var(--spacing-xl);
+}
+
+.deals-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--primary);
+}
+
+.deals-nav-btn:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Testimonials - Enhanced */
 .testimonials {
   background-color: var(--background);
   overflow: hidden;
   padding: var(--spacing-xxl) 0;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  margin-top: 5rem;
+}
+
+.testimonials-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-m);
+  color: var(--primary);
+}
+
+.testimonials-header p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonials-slider-container {
+  position: relative;
+  padding: 0 var(--spacing-l);
 }
 
 .testimonials-slider {
@@ -318,32 +466,38 @@
   width: 100%;
   overflow: hidden;
   padding: var(--spacing-m) 0;
-  margin-top: var(--spacing-l);
 }
 
 .testimonials-slider-content {
   display: flex;
   gap: var(--spacing-l);
-  will-change: transform;
+  transition: transform 0.5s ease;
 }
 
 .testimonial-card {
   background-color: var(--surface);
   border-radius: var(--border-radius-m);
-  padding: var(--spacing-l);
+  padding: var(--spacing-xl);
   box-shadow: var(--shadow-s);
   min-width: 300px;
   max-width: 350px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-medium),
-    box-shadow var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  border: 1px solid var(--border);
 }
 
 .testimonial-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-m);
+}
+
+.testimonial-quote {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: var(--spacing-s);
+  line-height: 1;
 }
 
 .testimonial-avatar {
@@ -372,6 +526,16 @@
   font-style: italic;
   line-height: 1.6;
   margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.testimonial-rating {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: var(--spacing-m);
+  color: #ffb800;
 }
 
 .testimonial-author {
@@ -383,14 +547,63 @@
 }
 
 .author-name {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary);
   margin-bottom: var(--spacing-xs);
+  font-size: 1.1rem;
 }
 
 .author-role {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-tertiary);
+}
+
+.testimonials-navigation {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-m);
+  margin-top: var(--spacing-xl);
+}
+
+.testimonials-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--primary);
+}
+
+.testimonials-nav-btn:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.testimonials-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-l);
+}
+
+.testimonials-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.testimonials-dot.active {
+  background-color: var(--primary);
+  transform: scale(1.2);
 }
 
 /* Newsletter */
@@ -480,11 +693,40 @@
 
   .deal-card {
     flex-direction: column;
-    text-align: center;
   }
 
   .deal-content {
-    margin-bottom: var(--spacing-l);
+    padding: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .deal-price {
+    justify-content: center;
+  }
+
+  .deal-timer {
+    justify-content: center;
+  }
+
+  .deal-image {
+    width: 100%;
+    height: 300px;
+  }
+
+  .testimonials-slider-content {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .testimonials-slider-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonial-card {
+    scroll-snap-align: center;
   }
 }
 
@@ -519,6 +761,27 @@
   .newsletter-form .btn {
     border-radius: var(--border-radius-m);
   }
+
+  .deal-title {
+    font-size: 2rem;
+  }
+
+  .deal-sale-price {
+    font-size: 2rem;
+  }
+
+  .timer-unit {
+    min-width: 60px;
+    padding: var(--spacing-xs) var(--spacing-s);
+  }
+
+  .timer-value {
+    font-size: 1.2rem;
+  }
+
+  .deal-image {
+    height: 250px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -537,4 +800,21 @@
   .products-grid {
     grid-template-columns: 1fr;
   }
+
+  .deal-content {
+    padding: var(--spacing-l);
+  }
+
+  .deal-title {
+    font-size: 1.75rem;
+  }
+
+  .deal-timer {
+    gap: var(--spacing-s);
+  }
+
+  .timer-unit {
+    min-width: 50px;
+  }
 }
+

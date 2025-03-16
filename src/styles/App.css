@@ -45,7 +45,7 @@ main {
 }
 
 .btn-secondary:hover {
-  background-color: rgba(132, 88, 179, 0.1);
+  background-color: var(--primary);
 }
 
 .btn-large {

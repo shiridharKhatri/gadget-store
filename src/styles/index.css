@@ -168,7 +168,7 @@ a:hover {
 }
 
 .btn-secondary:hover {
-  background-color: var(--secondary-dark);
+  background-color: var(--primary);
   transform: translateY(-2px);
 }
 

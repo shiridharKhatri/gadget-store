@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { useParams, Link } from "react-router-dom"
-import { gsap } from "gsap"
-import { useCart } from "../context/CartContext"
-import { useAuth } from "../context/AuthContext"
-import Avatar from "../components/Avatar"
-import "../styles/ProductDetails.css"
-import Footer from "../components/Footer"
-import Navbar from "../components/Navbar"
-import Loader from "../components/Loader"
-import { FaStar } from "react-icons/fa"
-import { useProduct } from "../context/ProductContext"
+import { useState, useEffect, useRef } from "react";
+import { useParams, Link } from "react-router-dom";
+import { gsap } from "gsap";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import Avatar from "../components/Avatar";
+import "../styles/ProductDetails.css";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Loader from "../components/Loader";
+import { FaStar } from "react-icons/fa";
+import { useProduct } from "../context/ProductContext";
 const allProducts = [
   {
     id: "1",
@@ -19,24 +19,28 @@ const allProducts = [
     category: "Journals",
     price: 29.99,
     image: "/placeholder.png",
-    images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"],
-    details: {
-      description:
-        "Our Gratitude Journal is designed to help you cultivate a positive mindset by focusing on the good in your life. This beautifully crafted journal includes daily prompts, inspiring quotes, and space for reflection to guide your gratitude practice.",
-      features: [
-        "High-quality acid-free paper",
-        "200 pages with daily gratitude prompts",
-        "Hardcover with elegant design",
-        "Bookmark ribbon",
-        "Elastic closure",
-        "Inner pocket for storing mementos",
-      ],
-      specifications: {
-        size: '5.5" x 8.5"',
-        weight: "14 oz",
-        material: "Vegan leather cover, acid-free paper",
-        colors: ["Lavender", "Sage", "Navy", "Blush"],
-      },
+
+    image: [
+      "/placeholder.png",
+      "/placeholder.png",
+      "/placeholder.png",
+      "/placeholder.png",
+    ],
+    description:
+      "Our Gratitude Journal is designed to help you cultivate a positive mindset by focusing on the good in your life. This beautifully crafted journal includes daily prompts, inspiring quotes, and space for reflection to guide your gratitude practice.",
+    features: [
+      "High-quality acid-free paper",
+      "200 pages with daily gratitude prompts",
+      "Hardcover with elegant design",
+      "Bookmark ribbon",
+      "Elastic closure",
+      "Inner pocket for storing mementos",
+    ],
+    specifications: {
+      size: '5.5" x 8.5"',
+      weight: "14 oz",
+      material: "Vegan leather cover, acid-free paper",
+      colors: ["Lavender", "Sage", "Navy", "Blush"],
     },
     reviews: [
       {
@@ -66,6 +70,7 @@ const allProducts = [
     ],
     sale: false,
   },
+
   {
     id: "2",
     title: "Daily Reflection Diary",
@@ -73,7 +78,12 @@ const allProducts = [
     price: 34.99,
     salePrice: 29.99,
     image: "/placeholder.png",
-    images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"],
+    images: [
+      "/placeholder.png",
+      "/placeholder.png",
+      "/placeholder.png",
+      "/placeholder.png",
+    ],
     details: {
       description:
         "The Daily Reflection Diary is designed for those who want to capture their thoughts, emotions, and experiences each day. With guided reflection prompts and ample writing space, this diary helps you process your day and gain insights into your personal growth journey.",
@@ -106,94 +116,99 @@ const allProducts = [
         id: 2,
         user: "James K.",
         rating: 5,
-        comment: "I love how this diary is structured. It helps me stay consistent with my reflection practice.",
+        comment:
+          "I love how this diary is structured. It helps me stay consistent with my reflection practice.",
         date: "2023-02-22",
       },
       {
         id: 3,
         user: "Tanya B.",
         rating: 4,
-        comment: "Beautiful diary with great prompts. Would love if it had more space for free writing.",
+        comment:
+          "Beautiful diary with great prompts. Would love if it had more space for free writing.",
         date: "2023-03-15",
       },
     ],
     sale: true,
   },
-]
+];
 
 const ProductDetails = () => {
-  const { fetchProducts, fetchReviews, postReview } = useProduct()
-  const { id } = useParams()
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [quantity, setQuantity] = useState(1)
-  const [selectedColor, setSelectedColor] = useState("")
-  const [activeTab, setActiveTab] = useState("description")
-  const { addToCart } = useCart()
-  const [reviews, setReviews] = useState([])
+  const { fetchProducts, fetchReviews, postReview } = useProduct();
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState("");
+  const [activeTab, setActiveTab] = useState("description");
+  const { addToCart } = useCart();
+  const [reviews, setReviews] = useState([]);
 
-  const [reviewSort, setReviewSort] = useState("newest")
-  const [showReviewForm, setShowReviewForm] = useState(false)
-  const [reviewRating, setReviewRating] = useState(5)
-  const [reviewTitle, setReviewTitle] = useState("")
-  const [reviewComment, setReviewComment] = useState("")
-  const [reviewImages, setReviewImages] = useState([])
-  const [userReview, setUserReview] = useState(null)
-  const { isAuthenticated, currentUser } = useAuth()
-  const [reviewLoader, setReviewLoader] = useState(true)
+  const [reviewSort, setReviewSort] = useState("newest");
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewTitle, setReviewTitle] = useState("");
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewImages, setReviewImages] = useState([]);
+  const [userReview, setUserReview] = useState(null);
+  const { isAuthenticated, currentUser } = useAuth();
+  const [reviewLoader, setReviewLoader] = useState(true);
 
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
 
-  const productRef = useRef(null)
-  const imagesRef = useRef(null)
-  const detailsRef = useRef(null)
+  const productRef = useRef(null);
+  const imagesRef = useRef(null);
+  const detailsRef = useRef(null);
 
-  const hasPurchased = isAuthenticated
+  const hasPurchased = isAuthenticated;
 
   const sortedReviews =
     reviews && reviews
       ? [...reviews].sort((a, b) => {
           switch (reviewSort) {
             case "newest":
-              return new Date(b.date) - new Date(a.date)
+              return new Date(b.date) - new Date(a.date);
             case "oldest":
-              return new Date(a.date) - new Date(b.date)
+              return new Date(a.date) - new Date(b.date);
             case "highest":
-              return b.rating - a.rating
+              return b.rating - a.rating;
             case "lowest":
-              return a.rating - b.rating
+              return a.rating - b.rating;
             default:
-              return 0
+              return 0;
           }
         })
-      : []
+      : [];
 
   const calculateAverageRating = (reviews) => {
-    if (!reviews.length) return 0
-    const sum = reviews.reduce((total, review) => total + review.rating, 0)
-    return sum / reviews.length
-  }
+    if (!reviews.length) return 0;
+    const sum = reviews.reduce((total, review) => total + review.rating, 0);
+    return sum / reviews.length;
+  };
 
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" }
-    return new Date(dateString).toLocaleDateString(undefined, options)
-  }
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   const renderStars = (rating) => {
     return (
       <div className="stars">
         {[1, 2, 3, 4, 5].map((star) => (
-          <span key={star} className={`star ${star <= rating ? "filled" : "empty"}`}>
+          <span
+            key={star}
+            className={`star ${star <= rating ? "filled" : "empty"}`}
+          >
             <FaStar />
           </span>
         ))}
       </div>
-    )
-  }
+    );
+  };
 
   const handleReviewSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const newReview = {
       id: new Date(),
       user: `${currentUser.name}`,
@@ -203,121 +218,121 @@ const ProductDetails = () => {
       date: new Date().toISOString().split("T")[0],
       verified: true,
       images: [...reviewImages],
-    }
+    };
 
     try {
-      const data = new FormData()
-      data.append("productId", id)
-      data.append("rating", reviewRating)
-      data.append("title", reviewTitle)
-      data.append("comment", reviewComment)
-      data.append("withImage", reviewImages.length > 0)
+      const data = new FormData();
+      data.append("productId", id);
+      data.append("rating", reviewRating);
+      data.append("title", reviewTitle);
+      data.append("comment", reviewComment);
+      data.append("withImage", reviewImages.length > 0);
       reviewImages.forEach((image) => {
-        data.append("reviewImage", image)
-      })
-      const response = await postReview(id, data)
+        data.append("reviewImage", image);
+      });
+      const response = await postReview(id, data);
       if (response.success) {
-        setUserReview(newReview)
-        setShowReviewForm(false)
-        setReviewRating(5)
-        setReviewTitle("")
-        setReviewComment("")
-        setReviewImages([])
+        setUserReview(newReview);
+        setShowReviewForm(false);
+        setReviewRating(5);
+        setReviewTitle("");
+        setReviewComment("");
+        setReviewImages([]);
         // window.location.reload();
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files)
+    const files = Array.from(e.target.files);
     if (files.length + reviewImages.length > 3) {
-      alert("You can upload a maximum of 3 images")
-      return
+      alert("You can upload a maximum of 3 images");
+      return;
     }
 
-    const newImages = files.map((file) => URL.createObjectURL(file))
-    setReviewImages([...reviewImages, ...newImages])
-  }
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setReviewImages([...reviewImages, ...newImages]);
+  };
 
   const handleRemoveImage = (index) => {
-    const updatedImages = [...reviewImages]
-    updatedImages.splice(index, 1)
-    setReviewImages(updatedImages)
-  }
+    const updatedImages = [...reviewImages];
+    updatedImages.splice(index, 1);
+    setReviewImages(updatedImages);
+  };
 
   const handleImageClick = (image) => {
-    window.open(image, "_blank")
-  }
+    window.open(image, "_blank");
+  };
 
   useEffect(() => {
     if (isAuthenticated && currentUser && product && reviews) {
       const existingReview = reviews.find(
-        (review) => review.user === `${currentUser.firstName} ${currentUser.lastName}`,
-      )
+        (review) =>
+          review.user === `${currentUser.firstName} ${currentUser.lastName}`
+      );
       if (existingReview) {
-        setUserReview(existingReview)
+        setUserReview(existingReview);
       }
     }
-  }, [isAuthenticated, currentUser, product])
+  }, [isAuthenticated, currentUser, product]);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      setLoading(true)
+      setLoading(true);
 
-      const foundProduct = allProducts.find((p) => p.id === id)
-
+      const foundProduct = allProducts.find((p) => p.id === id);
+      console.log(foundProduct);
       if (foundProduct) {
-        setProduct(foundProduct)
+        setProduct(foundProduct);
         if (foundProduct && foundProduct.specifications.colors) {
-          setSelectedColor(foundProduct.specifications.colors[0])
+          setSelectedColor(foundProduct.specifications.colors[0]);
         }
       }
 
-      setLoading(false)
-    }
+      setLoading(false);
+    };
+    fetchProduct();
 
-    fetchProduct()
+    window.scrollTo(0, 0);
+  }, [id]);
 
-    window.scrollTo(0, 0)
-  }, [id])
+  // useEffect(() => {
+  //   const fetchProd = async () => {
+  //     const products = await fetchProducts("single", id)
+  //     if (products.success) {
+  //       setProduct(products.products)
+  //       setLoader(false)
+  //     }
+  //   }
+  //   fetchProd()
+  // }, [])
 
-  useEffect(() => {
-    const fetchProd = async () => {
-      const products = await fetchProducts("single", id)
-      if (products.success) {
-        setProduct(products.products)
-        setLoader(false)
-      }
-    }
-    fetchProd()
-  }, [])
-
-  useEffect(() => {
-    const fetchReview = async () => {
-      const products = await fetchReviews(id)
-      if (products.success) {
-        setReviews(products.review)
-        setReviewLoader(false)
-      }
-    }
-    fetchReview()
-  }, [])
+  // useEffect(() => {
+  //   const fetchReview = async () => {
+  //     const products = await fetchReviews(id)
+  //     if (products.success) {
+  //       setReviews(products.review)
+  //       setReviewLoader(false)
+  //     }
+  //   }
+  //   fetchReview()
+  // }, [])
 
   useEffect(() => {
     if (product && !loading) {
       gsap.fromTo(
         detailsRef.current.querySelectorAll(".animate-in"),
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" },
-      )
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
+      );
 
       gsap.fromTo(
         imagesRef.current.querySelector(".main-image"),
         { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.8, ease: "power3.out" },
-      )
+        { scale: 1, opacity: 1, duration: 0.8, ease: "power3.out" }
+      );
 
       gsap.fromTo(
         imagesRef.current.querySelectorAll(".thumbnail"),
@@ -329,16 +344,16 @@ const ProductDetails = () => {
           stagger: 0.1,
           ease: "power3.out",
           delay: 0.3,
-        },
-      )
+        }
+      );
     }
-  }, [product, loading])
+  }, [product, loading]);
 
   const handleQuantityChange = (value) => {
-    if (value < 1) return
-    if (value > 10) return
-    setQuantity(value)
-  }
+    if (value < 1) return;
+    if (value > 10) return;
+    setQuantity(value);
+  };
 
   const handleAddToCart = () => {
     if (product) {
@@ -347,8 +362,8 @@ const ProductDetails = () => {
           ...product,
           selectedColor,
         },
-        quantity,
-      )
+        quantity
+      );
 
       gsap.to(".product-info", {
         y: -10,
@@ -359,11 +374,11 @@ const ProductDetails = () => {
             y: 0,
             duration: 0.3,
             ease: "bounce.out",
-          })
+          });
         },
-      })
+      });
     }
-  }
+  };
 
   if (!loading && !product) {
     return (
@@ -393,7 +408,7 @@ const ProductDetails = () => {
         </div>
         <Footer />
       </>
-    )
+    );
   }
   return (
     <>
@@ -402,20 +417,15 @@ const ProductDetails = () => {
         {!loading && (
           <div className="container section">
             <div className="breadcrumbs">
-              <Link to="/">Home</Link> / <Link to="/products">Products</Link> / <span>{product.title}</span>
+              <Link to="/">Home</Link> / <Link to="/products">Products</Link> /{" "}
+              <span>{product.title}</span>
             </div>
 
             <div className="product-details">
               {/* Product Images */}
               <div className="product-images" ref={imagesRef}>
                 <div className="main-image">
-                  <img
-                    src={
-                      `${import.meta.env.VITE_HOST}/image/products/${product.image[selectedImage]}` ||
-                      "/placeholder.png"
-                    }
-                    alt={product.title}
-                  />
+                  <img src={"/placeholder.png"} alt={product.title} />
                   {product.sale && <span className="product-tag">Sale</span>}
                 </div>
 
@@ -423,11 +433,13 @@ const ProductDetails = () => {
                   {product.image.map((image, index) => (
                     <div
                       key={index}
-                      className={`thumbnail ${selectedImage === index ? "active" : ""}`}
+                      className={`thumbnail ${
+                        selectedImage === index ? "active" : ""
+                      }`}
                       onClick={() => setSelectedImage(index)}
                     >
                       <img
-                        src={`${import.meta.env.VITE_HOST}/image/products/${image}` || "/placeholder.svg"}
+                        src={image}
                         alt={`${product.title} - View ${index + 1}`}
                       />
                     </div>
@@ -438,7 +450,9 @@ const ProductDetails = () => {
               {/* Product Info */}
               <div className="product-info" ref={detailsRef}>
                 <h1 className="product-title animate-in">{product.title}</h1>
-                <div className="product-category animate-in">{product.category}</div>
+                <div className="product-category animate-in">
+                  {product.category}
+                </div>
 
                 <div
                   className="product-price animate-in"
@@ -448,8 +462,12 @@ const ProductDetails = () => {
                 >
                   {product.salePrice ? (
                     <>
-                      <span className="price-original">${product.price.toFixed(2)}</span>
-                      <span className="price-sale">${product.salePrice.toFixed(2)}</span>
+                      <span className="price-original">
+                        ${product.price.toFixed(2)}
+                      </span>
+                      <span className="price-sale">
+                        ${product.salePrice.toFixed(2)}
+                      </span>
                     </>
                   ) : (
                     <span>${product.price.toFixed(2)}</span>
@@ -468,7 +486,9 @@ const ProductDetails = () => {
                       {product.specifications.colors.map((color) => (
                         <button
                           key={color}
-                          className={`color-option ${selectedColor === color ? "active" : ""}`}
+                          className={`color-option ${
+                            selectedColor === color ? "active" : ""
+                          }`}
                           onClick={() => setSelectedColor(color)}
                         >
                           {color}
@@ -494,7 +514,11 @@ const ProductDetails = () => {
                       min="1"
                       max="10"
                       value={quantity}
-                      onChange={(e) => handleQuantityChange(Number.parseInt(e.target.value) || 1)}
+                      onChange={(e) =>
+                        handleQuantityChange(
+                          Number.parseInt(e.target.value) || 1
+                        )
+                      }
                     />
                     <button
                       onClick={() => handleQuantityChange(quantity + 1)}
@@ -511,7 +535,9 @@ const ProductDetails = () => {
                   <button className="btn btn-large" onClick={handleAddToCart}>
                     Add to Cart
                   </button>
-                  <button className="btn btn-large btn-secondary">Add to Wishlist</button>
+                  <button className="btn btn-large btn-secondary">
+                    Add to Wishlist
+                  </button>
                 </div>
 
                 {/* Product Meta */}
@@ -534,13 +560,17 @@ const ProductDetails = () => {
             <div className="product-tabs">
               <div className="tabs-header">
                 <button
-                  className={`tab-btn ${activeTab === "description" ? "active" : ""}`}
+                  className={`tab-btn ${
+                    activeTab === "description" ? "active" : ""
+                  }`}
                   onClick={() => setActiveTab("description")}
                 >
                   Description
                 </button>
                 <button
-                  className={`tab-btn ${activeTab === "features" ? "active" : ""}`}
+                  className={`tab-btn ${
+                    activeTab === "features" ? "active" : ""
+                  }`}
                   onClick={() => setActiveTab("features")}
                 >
                   Features
@@ -552,10 +582,13 @@ const ProductDetails = () => {
                   Specifications
                 </button>
                 <button
-                  className={`tab-btn ${activeTab === "reviews" ? "active" : ""}`}
+                  className={`tab-btn ${
+                    activeTab === "reviews" ? "active" : ""
+                  }`}
                   onClick={() => setActiveTab("reviews")}
                 >
-                  Reviews ({reviewLoader ? "Loading...." : reviews?.length || 0})
+                  Reviews ({reviewLoader ? "Loading...." : reviews?.length || 0}
+                  )
                 </button>
               </div>
 
@@ -582,12 +615,20 @@ const ProductDetails = () => {
                     <h3>Product Specifications</h3>
                     <table className="specs-table">
                       <tbody>
-                        {Object.entries(product.specifications).map(([key, value]) => (
-                          <tr key={key}>
-                            <th>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
-                            <td>{Array.isArray(value) ? value.join(", ") : value}</td>
-                          </tr>
-                        ))}
+                        {Object.entries(product.specifications).map(
+                          ([key, value]) => (
+                            <tr key={key}>
+                              <th>
+                                {key.charAt(0).toUpperCase() + key.slice(1)}
+                              </th>
+                              <td>
+                                {Array.isArray(value)
+                                  ? value.join(", ")
+                                  : value}
+                              </td>
+                            </tr>
+                          )
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -605,23 +646,38 @@ const ProductDetails = () => {
                         <h3>Customer Reviews</h3>
                         <div className="rating-summary">
                           <div className="average-rating">
-                            <span className="rating-number">{calculateAverageRating(reviews).toFixed(1)}</span>
-                            <div className="rating-stars">{renderStars(calculateAverageRating(reviews))}</div>
-                            <span className="total-reviews">Based on {reviews.length} reviews</span>
+                            <span className="rating-number">
+                              {calculateAverageRating(reviews).toFixed(1)}
+                            </span>
+                            <div className="rating-stars">
+                              {renderStars(calculateAverageRating(reviews))}
+                            </div>
+                            <span className="total-reviews">
+                              Based on {reviews.length} reviews
+                            </span>
                           </div>
                           <div className="rating-bars">
                             {[5, 4, 3, 2, 1].map((rating) => {
-                              const count = reviews.filter((r) => Math.round(r.rating) === rating).length
-                              const percentage = reviews.length ? (count / reviews.length) * 100 : 0
+                              const count = reviews.filter(
+                                (r) => Math.round(r.rating) === rating
+                              ).length;
+                              const percentage = reviews.length
+                                ? (count / reviews.length) * 100
+                                : 0;
                               return (
                                 <div key={rating} className="rating-bar-row">
-                                  <div className="rating-label">{rating} stars</div>
+                                  <div className="rating-label">
+                                    {rating} stars
+                                  </div>
                                   <div className="rating-bar-container">
-                                    <div className="rating-bar" style={{ width: `${percentage}%` }}></div>
+                                    <div
+                                      className="rating-bar"
+                                      style={{ width: `${percentage}%` }}
+                                    ></div>
                                   </div>
                                   <div className="rating-count">{count}</div>
                                 </div>
-                              )
+                              );
                             })}
                           </div>
                         </div>
@@ -649,22 +705,41 @@ const ProductDetails = () => {
                           <div className="review-content">
                             <div className="review-header">
                               <div className="review-user-info">
-                                <div className="review-user">{review.user.name}</div>
+                                <div className="review-user">
+                                  {review.user.name}
+                                </div>
                                 {/* <div className="review-verified">
                                   {review.verified && "Verified Purchase"}
                                 </div> */}
                               </div>
-                              <div className="review-date">{formatDate(review.createdDate)}</div>
+                              <div className="review-date">
+                                {formatDate(review.createdDate)}
+                              </div>
                             </div>
-                            <div className="review-rating">{renderStars(review.rating)}</div>
-                            {review.title && <h4 className="review-title">{review.title}</h4>}
-                            <div className="review-comment">{review.comment}</div>
+                            <div className="review-rating">
+                              {renderStars(review.rating)}
+                            </div>
+                            {review.title && (
+                              <h4 className="review-title">{review.title}</h4>
+                            )}
+                            <div className="review-comment">
+                              {review.comment}
+                            </div>
                             {review.withImage && (
                               <div className="review-images">
                                 {review.image.map((image, idx) => (
-                                  <div key={idx} className="review-image" onClick={() => handleImageClick(image)}>
+                                  <div
+                                    key={idx}
+                                    className="review-image"
+                                    onClick={() => handleImageClick(image)}
+                                  >
                                     <img
-                                      src={`${import.meta.env.VITE_HOST}/image/reviews/${image}` || "/placeholder.svg"}
+                                      src={
+                                        `${
+                                          import.meta.env.VITE_HOST
+                                        }/image/reviews/${image}` ||
+                                        "/placeholder.svg"
+                                      }
                                       alt={`Review image ${idx + 1}`}
                                     />
                                   </div>
@@ -683,7 +758,10 @@ const ProductDetails = () => {
                     </div>
                     {isAuthenticated && hasPurchased && (
                       <div className="add-review-section">
-                        <button className="btn btn-secondary" onClick={() => setShowReviewForm(true)}>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => setShowReviewForm(true)}
+                        >
                           Write a Review
                         </button>
                       </div>
@@ -699,25 +777,43 @@ const ProductDetails = () => {
                     )}
                     {isAuthenticated && !hasPurchased && (
                       <div className="review-purchase-notice">
-                        <p>You need to purchase this product to leave a review.</p>
-                        <button className="btn btn-secondary" onClick={handleAddToCart}>
+                        <p>
+                          You need to purchase this product to leave a review.
+                        </p>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={handleAddToCart}
+                        >
                           Add to Cart
                         </button>
                       </div>
                     )}
 
                     {showReviewForm && (
-                      <div className="review-form-overlay" onClick={() => setShowReviewForm(false)}>
-                        <div className="review-form-container" onClick={(e) => e.stopPropagation()}>
-                          <h3>{userReview ? "Edit Your Review" : "Write a Review"}</h3>
-                          <form onSubmit={handleReviewSubmit} className="review-form">
+                      <div
+                        className="review-form-overlay"
+                        onClick={() => setShowReviewForm(false)}
+                      >
+                        <div
+                          className="review-form-container"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <h3>
+                            {userReview ? "Edit Your Review" : "Write a Review"}
+                          </h3>
+                          <form
+                            onSubmit={handleReviewSubmit}
+                            className="review-form"
+                          >
                             <div className="form-group">
                               <label>Rating</label>
                               <div className="star-rating-input">
                                 {[1, 2, 3, 4, 5].map((star) => (
                                   <span
                                     key={star}
-                                    className={`star ${star <= reviewRating ? "selected" : ""}`}
+                                    className={`star ${
+                                      star <= reviewRating ? "selected" : ""
+                                    }`}
                                     onClick={() => setReviewRating(star)}
                                   >
                                     <FaStar />
@@ -726,7 +822,9 @@ const ProductDetails = () => {
                               </div>
                             </div>
                             <div className="form-group">
-                              <label htmlFor="reviewTitle">Review Title (optional)</label>
+                              <label htmlFor="reviewTitle">
+                                Review Title (optional)
+                              </label>
                               <input
                                 type="text"
                                 id="reviewTitle"
@@ -741,12 +839,16 @@ const ProductDetails = () => {
                               <textarea
                                 id="reviewComment"
                                 value={reviewComment}
-                                onChange={(e) => setReviewComment(e.target.value)}
+                                onChange={(e) =>
+                                  setReviewComment(e.target.value)
+                                }
                                 placeholder="What did you like or dislike about this product?"
                                 rows={5}
                                 required
                               ></textarea>
-                              <div className="char-count">{reviewComment.length}/500</div>
+                              <div className="char-count">
+                                {reviewComment.length}/500
+                              </div>
                             </div>
                             <div className="form-group">
                               <label>Add Photos (optional)</label>
@@ -761,13 +863,18 @@ const ProductDetails = () => {
                                   />
                                   Choose Images
                                 </label>
-                                <span className="upload-note">Up to 3 images</span>
+                                <span className="upload-note">
+                                  Up to 3 images
+                                </span>
                               </div>
                               {reviewImages.length > 0 && (
                                 <div className="review-image-preview">
                                   {reviewImages.map((image, idx) => (
                                     <div key={idx} className="preview-image">
-                                      <img src={image || "/placeholder.svg"} alt={`Preview ${idx + 1}`} />
+                                      <img
+                                        src={image || "/placeholder.svg"}
+                                        alt={`Preview ${idx + 1}`}
+                                      />
                                       <button
                                         type="button"
                                         className="remove-image"
@@ -791,7 +898,9 @@ const ProductDetails = () => {
                               <button
                                 type="submit"
                                 className="btn btn-primary"
-                                disabled={!reviewRating || !reviewComment.trim()}
+                                disabled={
+                                  !reviewRating || !reviewComment.trim()
+                                }
                               >
                                 {userReview ? "Update Review" : "Submit Review"}
                               </button>
@@ -812,8 +921,7 @@ const ProductDetails = () => {
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default ProductDetails
-
+export default ProductDetails;

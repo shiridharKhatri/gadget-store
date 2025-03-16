@@ -1,18 +1,19 @@
+/* Base styles */
 .deals-page {
   margin-top: 80px;
 }
 
-/* Flash Deals Section */
+/* Flash Deals Section - Enhanced */
 .flash-deals-section {
   background-color: var(--background);
-  padding: var(--spacing-xxl) 0;
+  padding: var(--spacing-4xl) 0;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
   flex-wrap: wrap;
   gap: var(--spacing-m);
 }
@@ -29,27 +30,36 @@
 
 .section-title {
   margin: 0;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary);
   margin-top: 5rem;
 }
 
 .section-subtitle {
-  margin-top: var(--spacing-xs);
+  margin-top: var(--spacing-s);
   color: var(--text-secondary);
   font-size: 1.1rem;
+  max-width: 600px;
 }
 
-/* Countdown Timer */
+/* Countdown Timer - Enhanced */
 .countdown-timer {
   display: flex;
   align-items: center;
   gap: var(--spacing-m);
+  background-color: var(--surface);
+  padding: var(--spacing-m) var(--spacing-l);
+  border-radius: var(--border-radius-l);
+  box-shadow: var(--shadow-s);
+  border: 1px solid var(--border);
 }
 
 .countdown-timer p {
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 1.1rem;
 }
 
 .timer-units {
@@ -62,59 +72,73 @@
   flex-direction: column;
   align-items: center;
   min-width: 60px;
+  background-color: var(--primary);
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--border-radius-m);
+  color: white;
 }
 
 .timer-value {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary);
 }
 
 .timer-label {
   font-size: 0.8rem;
-  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .timer-separator {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0 var(--spacing-xs);
-  color: var(--text-tertiary);
+  color: var(--primary);
   line-height: 1;
-  margin-bottom: 1.2rem;
 }
 
-/* Products Grid */
+/* Products Grid - Enhanced */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-l);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
 }
 
 /* Section Footer */
 .section-footer {
   text-align: center;
-  margin-top: var(--spacing-l);
+  margin-top: var(--spacing-2xl);
 }
 
-/* Deal of the Day */
+.section-footer .btn {
+  padding: var(--spacing-m) var(--spacing-2xl);
+  font-size: 1.1rem;
+}
+
+/* Deal of the Day - Enhanced */
 .deal-of-the-day {
   background-color: var(--freeze-purple);
-  padding: var(--spacing-xxl) 0;
+  padding: var(--spacing-4xl) 0;
 }
 
 .deal-of-day-card {
   display: flex;
-  background-color: var(--surface);
+  background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-m);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deal-of-day-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-l);
 }
 
 .deal-content {
   flex: 1;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-3xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,47 +146,53 @@
 
 .deal-badge {
   display: inline-block;
-  background-color: var(--tertiary);
+  background-color: var(--primary);
   color: white;
   font-weight: 600;
   font-size: 0.9rem;
   padding: var(--spacing-xs) var(--spacing-m);
-  border-radius: var(--border-radius-m);
+  border-radius: 30px;
   margin-bottom: var(--spacing-m);
-  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: max-content;
 }
 
 .deal-content h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: var(--spacing-m);
+  color: var(--primary);
+  line-height: 1.2;
 }
 
 .deal-price {
   display: flex;
   align-items: center;
-  gap: var(--spacing-m);
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-l);
 }
 
 .original-price {
   text-decoration: line-through;
   color: var(--text-tertiary);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  margin-right: var(--spacing-m);
 }
 
 .sale-price {
-  font-size: 2rem;
+  color: var(--primary);
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--error);
 }
 
 .discount-badge {
-  background-color: var(--error);
+  margin-left: var(--spacing-m);
+  background-color: var(--accent);
   color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
   padding: var(--spacing-xs) var(--spacing-s);
   border-radius: var(--border-radius-s);
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .deal-content p {
@@ -170,61 +200,83 @@
   font-size: 1.1rem;
   color: var(--text-secondary);
   max-width: 500px;
+  line-height: 1.6;
 }
 
 .deal-image {
   flex: 1;
-  height: 400px;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
 }
 
 .deal-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-/* Weekly Deals Section */
+.deal-of-day-card:hover .deal-image img {
+  transform: scale(1.05);
+}
+
+/* Weekly Deals Section - Enhanced */
 .weekly-deals-section {
   background-color: var(--background);
-  padding: var(--spacing-xxl) 0;
+  padding: var(--spacing-4xl) 0;
 }
 
-/* Clearance Section */
+/* Clearance Section - Enhanced */
 .clearance-section {
   background-color: var(--medium-purple);
-  padding: var(--spacing-xxl) 0;
+  padding: var(--spacing-4xl) 0;
 }
 
-/* Newsletter */
+.clearance-section .section-title {
+  color: var(--primary);
+}
+
+.clearance-section .section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-l);
+  text-align: center;
+}
+
+/* Newsletter Signup - Enhanced */
 .deals-newsletter {
-  padding: var(--spacing-xxl) 0;
+  padding: var(--spacing-4xl) 0;
   background-color: var(--background);
 }
 
 .newsletter-card {
   display: flex;
-  background: linear-gradient(
-    135deg,
-    var(--lavender) 0%,
-    var(--purple-muted) 100%
-  );
+  background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-m);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-l);
 }
 
 .newsletter-content {
   flex: 1;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-3xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .newsletter-content h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: var(--spacing-m);
-  color: var(--text-primary);
+  color: var(--primary);
 }
 
 .newsletter-content p {
@@ -232,11 +284,13 @@
   font-size: 1.1rem;
   color: var(--text-secondary);
   max-width: 500px;
+  line-height: 1.6;
 }
 
 .newsletter-form {
   display: flex;
   max-width: 500px;
+  margin-bottom: var(--spacing-m);
 }
 
 .newsletter-form input {
@@ -246,6 +300,13 @@
   border-top-left-radius: var(--border-radius-m);
   border-bottom-left-radius: var(--border-radius-m);
   font-size: 1rem;
+  border: 1px solid var(--border);
+  border-right: none;
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .newsletter-form .btn {
@@ -253,17 +314,45 @@
   border-bottom-left-radius: 0;
   background-color: var(--primary);
   color: white;
-  height: 55px;
+  font-weight: 600;
+  padding: 0 var(--spacing-l);
 }
+
 .newsletter-image {
   flex: 1;
-  height: 350px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
 }
 
 .newsletter-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.newsletter-card:hover .newsletter-image img {
+  transform: scale(1.05);
+}
+
+/* Add this to the end of the file for the newsletter features */
+.newsletter-features {
+  display: flex;
+  gap: var(--spacing-l);
+  margin-top: var(--spacing-m);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.feature svg {
+  color: var(--primary);
 }
 
 /* Responsive Adjustments */
@@ -285,14 +374,19 @@
 
   .deal-content,
   .newsletter-content {
-    padding: var(--spacing-l);
+    padding: var(--spacing-2xl);
     text-align: center;
     align-items: center;
   }
 
+  .deal-price {
+    justify-content: center;
+  }
+
   .deal-image,
   .newsletter-image {
-    height: 250px;
+    height: 300px;
+    width: 100%;
   }
 
   .section-header {
@@ -303,6 +397,12 @@
   .countdown-timer {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .newsletter-features {
+    flex-direction: column;
+    gap: var(--spacing-s);
+    align-items: center;
   }
 }
 
@@ -323,6 +423,15 @@
     font-size: 0.7rem;
   }
 
+  .deal-content h2,
+  .newsletter-content h2 {
+    font-size: 2rem;
+  }
+
+  .sale-price {
+    font-size: 2rem;
+  }
+
   .newsletter-form {
     flex-direction: column;
     width: 100%;
@@ -331,9 +440,48 @@
   .newsletter-form input {
     border-radius: var(--border-radius-m);
     margin-bottom: var(--spacing-s);
+    border-right: 1px solid var(--border);
   }
 
   .newsletter-form .btn {
     border-radius: var(--border-radius-m);
+    width: 100%;
   }
 }
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .countdown-timer {
+    flex-direction: column;
+    gap: var(--spacing-s);
+  }
+
+  .timer-units {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .deal-content,
+  .newsletter-content {
+    padding: var(--spacing-l);
+  }
+
+  .deal-content h2,
+  .newsletter-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .deal-content p,
+  .newsletter-content p {
+    font-size: 1rem;
+  }
+
+  .deal-image,
+  .newsletter-image {
+    height: 250px;
+  }
+}
+
