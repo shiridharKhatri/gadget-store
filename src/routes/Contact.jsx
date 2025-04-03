@@ -4,10 +4,11 @@ import { useState, useRef } from "react"
 import "../styles/Contact.css"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import { FaLocationDot, FaPhone } from "react-icons/fa6"
-import { IoMail } from "react-icons/io5"
-import { RiGlobalLine } from "react-icons/ri"
+import PageHeader from "../components/PageHeader"
+import { MapPin, Phone, Mail, Globe } from "lucide-react"
 import axiosInstance from "../axios/axiosInstance"
+import { storeLocations } from "../data/data"
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -19,6 +20,7 @@ const Contact = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [activeLocation, setActiveLocation] = useState(0)
 
   const formRef = useRef(null)
   const infoRef = useRef(null)
@@ -92,6 +94,7 @@ const Contact = () => {
         }
       } catch (error) {
         console.log(error)
+        setIsSubmitting(false)
       }
     }
   }
@@ -100,12 +103,12 @@ const Contact = () => {
     <>
       <Navbar />
       <div className="contact-page">
-        <div className="page-header">
-          <div className="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you. Get in touch with our team.</p>
-          </div>
-        </div>
+        <PageHeader
+          title="Contact Us"
+          subtitle="We're here to help with any questions about our products or services."
+          theme="dark"
+          size="medium"
+        />
 
         <section className="section">
           <div className="container">
@@ -116,7 +119,7 @@ const Contact = () => {
 
                 {submitSuccess && (
                   <div className="success-message contact-success">
-                    <p>Thank you for your message! We'll get back to you soon.</p>
+                    <p>Thank you for your message! Our support team will get back to you within 24 hours.</p>
                   </div>
                 )}
 
@@ -185,14 +188,14 @@ const Contact = () => {
 
                 <div className="contact-info-item">
                   <div className="contact-info-icon">
-                    <FaLocationDot />
+                    <MapPin />
                   </div>
                   <div className="contact-info-content">
-                    <h3>Our Location</h3>
+                    <h3>Our Headquarters</h3>
                     <p>
-                      123 Creativity Lane
+                      123 Tech Boulevard
                       <br />
-                      Portland, OR 97205
+                      San Francisco, CA 94105
                       <br />
                       United States
                     </p>
@@ -201,29 +204,29 @@ const Contact = () => {
 
                 <div className="contact-info-item">
                   <div className="contact-info-icon">
-                    <FaPhone />
+                    <Phone />
                   </div>
                   <div className="contact-info-content">
-                    <h3>Phone Number</h3>
+                    <h3>Phone Support</h3>
                     <p>+1 (555) 123-4567</p>
-                    <p>Monday - Friday: 9am - 5pm PST</p>
+                    <p>Monday - Friday: 9am - 6pm PST</p>
                   </div>
                 </div>
 
                 <div className="contact-info-item">
                   <div className="contact-info-icon">
-                    <IoMail />
+                    <Mail />
                   </div>
                   <div className="contact-info-content">
                     <h3>Email Us</h3>
-                    <p>hello@manifestandelevate.com</p>
-                    <p>support@manifestandelevate.com</p>
+                    <p>support@techwave.com</p>
+                    <p>sales@techwave.com</p>
                   </div>
                 </div>
 
                 <div className="contact-info-item">
                   <div className="contact-info-icon">
-                    <RiGlobalLine />
+                    <Globe />
                   </div>
                   <div className="contact-info-content">
                     <h3>Follow Us</h3>
@@ -231,27 +234,56 @@ const Contact = () => {
                       <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                         Instagram
                       </a>
-                      <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
-                        Pinterest
-                      </a>
                       <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                         Twitter
+                      </a>
+                      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        YouTube
                       </a>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <div className="contact-map">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28882862.44660002!2d61.01423266427311!3d19.7307823656301!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2z44Kk44Oz44OJ!5e1!3m2!1sja!2snp!4v1741268430819!5m2!1sja!2snp"
-                    width="600"
-                    height="450"
-                    style={{ border: "0" }}
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
+        {/* Store Locations Section */}
+        <section className="section store-locations-section">
+          <div className="container">
+            <h2 className="section-title text-center">Our Retail Stores</h2>
+            <p className="text-center locations-intro">
+              Visit one of our retail locations for personalized service and product demonstrations.
+            </p>
+
+            <div className="locations-container">
+              <div className="locations-list">
+                {storeLocations.map((location, index) => (
+                  <div
+                    key={location.id}
+                    className={`location-item ${activeLocation === index ? "active" : ""}`}
+                    onClick={() => setActiveLocation(index)}
+                  >
+                    <h3>{location.name}</h3>
+                    <p>{location.address}</p>
+                    <div className="location-details">
+                      <span>{location.phone}</span>
+                      <span>{location.hours}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="location-map">
+                <iframe
+                  src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0673431806897!2d${storeLocations[activeLocation].coordinates.lng}!3d${storeLocations[activeLocation].coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ2JzI5LjYiTiAxMjLCsDI1JzA5LjgiVw!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus`}
+                  width="600"
+                  height="450"
+                  style={{ border: "0" }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -264,50 +296,50 @@ const Contact = () => {
 
             <div className="faq-grid">
               <div className="faq-item">
-                <h3>What are your shipping times?</h3>
+                <h3>What is your warranty policy?</h3>
                 <p>
-                  We process orders within 1-2 business days. Standard shipping takes 3-5 business days within the US,
-                  and 7-14 business days for international orders.
+                  All TechWave products come with a standard 1-year warranty against manufacturing defects. Premium
+                  products include an extended 2-year warranty.
                 </p>
               </div>
 
               <div className="faq-item">
                 <h3>Do you offer international shipping?</h3>
                 <p>
-                  Yes, we ship worldwide! International shipping rates are calculated at checkout based on your
-                  location.
+                  Yes, we ship worldwide! International shipping rates are calculated at checkout based on your location
+                  and selected products.
                 </p>
               </div>
 
               <div className="faq-item">
                 <h3>What is your return policy?</h3>
                 <p>
-                  We accept returns within 30 days of delivery for unused items in original packaging. Please contact
-                  our support team to initiate a return.
+                  We offer a 30-day satisfaction guarantee. If you're not completely satisfied with your purchase, you
+                  can return it for a full refund or exchange.
                 </p>
               </div>
 
               <div className="faq-item">
-                <h3>Can I customize my journal?</h3>
+                <h3>Are your products water-resistant?</h3>
                 <p>
-                  Yes! We offer personalization options for most of our journals. You can add custom text, choose
-                  colors, and more during checkout.
+                  Most of our earbuds and smartwatches are water-resistant with IPX7 rating, making them suitable for
+                  workouts and light water exposure. Check individual product specifications for details.
                 </p>
               </div>
 
               <div className="faq-item">
-                <h3>Do you offer wholesale options?</h3>
+                <h3>How do I pair my earbuds with my device?</h3>
                 <p>
-                  Yes, we work with retailers and businesses. Please contact our wholesale team at
-                  wholesale@manifestandelevate.com for more information.
+                  Our wireless earbuds feature easy pairing. Simply open the charging case near your device with
+                  Bluetooth enabled, and follow the on-screen instructions to connect.
                 </p>
               </div>
 
               <div className="faq-item">
-                <h3>How can I track my order?</h3>
+                <h3>How long does shipping take?</h3>
                 <p>
-                  Once your order ships, you'll receive a tracking number via email. You can also check your order
-                  status in your account dashboard.
+                  Domestic orders typically arrive within 2-5 business days. International shipping can take 7-14
+                  business days depending on your location and customs processing.
                 </p>
               </div>
             </div>

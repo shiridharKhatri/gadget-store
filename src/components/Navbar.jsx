@@ -1,100 +1,72 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useCart } from "../context/CartContext";
-import { useWishlist } from "../context/WishlistContext";
-import { navigationLinks } from "../data/data";
-import "../styles/Navbar.css";
-import {
-  Menu,
-  X,
-  ShoppingBag,
-  ChevronDown,
-  User,
-  LogOut,
-  Search,
-  Heart,
-  ShoppingCart,
-} from "lucide-react";
-import Avatar from "./Avatar";
+import { useState, useEffect, useRef } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
+import { useCart } from "../context/CartContext"
+import { useWishlist } from "../context/WishlistContext"
+import { navigationLinks } from "../data/data"
+import "../styles/Navbar.css"
+import { Menu, X, ShoppingBag, ChevronDown, User, LogOut, Search, Heart, ShoppingCart } from 'lucide-react'
+import Avatar from "./Avatar"
+import ThemeToggle from "./ThemeToggle"
 
 const Navbar = ({ position }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchVal, setSearchVal] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchVal, setSearchVal] = useState("")
 
-  const { isAuthenticated, currentUser, logout } = useAuth();
-  const { cartItems } = useCart();
-  const { getWishlistCount } = useWishlist();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { isAuthenticated, currentUser, logout } = useAuth()
+  const { cartItems } = useCart()
+  const { getWishlistCount } = useWishlist()
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  const navbarRef = useRef(null);
-  const menuRef = useRef(null);
-  const searchInputRef = useRef(null);
-  const navbarMainRef = useRef(null);
+  const navbarRef = useRef(null)
+  const menuRef = useRef(null)
+  const searchInputRef = useRef(null)
+  const navbarMainRef = useRef(null)
 
-  const totalItems = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
-  const wishlistCount = getWishlistCount();
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
+  const wishlistCount = getWishlistCount()
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+      setIsScrolled(window.scrollY > 20)
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
-    setIsMenuOpen(false);
-    setSearchOpen(false);
-  }, [location]);
+    setIsMenuOpen(false)
+    setSearchOpen(false)
+  }, [location])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        isMenuOpen
-      ) {
-        setIsMenuOpen(false);
+      if (menuRef.current && !menuRef.current.contains(event.target) && isMenuOpen) {
+        setIsMenuOpen(false)
       }
-    };
+    }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMenuOpen]);
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [isMenuOpen])
 
   const toggleSearch = () => {
-    setSearchOpen(!searchOpen);
+    setSearchOpen(!searchOpen)
     if (!searchOpen) {
-      setTimeout(() => searchInputRef.current?.focus(), 100);
+      setTimeout(() => searchInputRef.current?.focus(), 100)
     }
-  };
+  }
 
   const submitSearch = (e) => {
-    e.preventDefault();
-    navigate(`/search?q=${searchVal}`);
-  };
-
-  // useEffect(() => {
-  //   let scrollEvent = (e) => {
-  //     if (window.scrollY > 100) {
-  //       navbarMainRef.current.style.position = "fixed";
-  //     } else {
-  //       navbarMainRef.current.style.position = "relative";
-  //     }
-  //   };
-  //   window.addEventListener("scroll", scrollEvent);
-  //   return () => window.removeEventListener("scroll", scrollEvent);
-  // }, []);
+    e.preventDefault()
+    navigate(`/search?q=${searchVal}`)
+  }
 
   return (
     <header
@@ -108,7 +80,7 @@ const Navbar = ({ position }) => {
         <div className="navbar-container">
           {/* Logo */}
           <Link to="/" className="navbar-logo">
-            <span className="logo-text">LOGO</span>
+            <span className="logo-text">TechWave</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -116,14 +88,9 @@ const Navbar = ({ position }) => {
             <ul className="navbar-menu-list">
               {navigationLinks.main.map((link) => (
                 <li key={link.path} className="navbar-menu-item">
-                  {link.name === "Categories" ? (
+                  {link.name === "Shop" ? (
                     <div className="dropdown">
-                      <Link
-                        to={link.path}
-                        className={
-                          location.pathname.includes(link.path) ? "active" : ""
-                        }
-                      >
+                      <Link to={link.path} className={location.pathname.includes(link.path) ? "active" : ""}>
                         {link.name} <ChevronDown size={16} />
                       </Link>
                       <div className="dropdown-menu">
@@ -135,12 +102,7 @@ const Navbar = ({ position }) => {
                       </div>
                     </div>
                   ) : (
-                    <Link
-                      to={link.path}
-                      className={
-                        location.pathname === link.path ? "active" : ""
-                      }
-                    >
+                    <Link to={link.path} className={location.pathname === link.path ? "active" : ""}>
                       {link.name}
                     </Link>
                   )}
@@ -151,30 +113,18 @@ const Navbar = ({ position }) => {
 
           {/* Actions */}
           <div className="navbar-actions">
-            <button
-              className="navbar-action-btn"
-              onClick={toggleSearch}
-              aria-label="Search"
-            >
+            <ThemeToggle />
+
+            <button className="navbar-action-btn" onClick={toggleSearch} aria-label="Search">
               <Search size={20} />
             </button>
 
-            <Link
-              to="/wishlist"
-              className="navbar-action-btn"
-              aria-label="Wishlist"
-            >
+            <Link to="/wishlist" className="navbar-action-btn" aria-label="Wishlist">
               <Heart size={20} />
-              {wishlistCount > 0 && (
-                <span className="badge">{wishlistCount}</span>
-              )}
+              {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
             </Link>
 
-            <Link
-              to="/cart"
-              className="navbar-action-btn"
-              aria-label="Shopping cart"
-            >
+            <Link to="/cart" className="navbar-action-btn" aria-label="Shopping cart">
               <ShoppingCart size={20} />
               {totalItems > 0 && <span className="badge">{totalItems}</span>}
             </Link>
@@ -209,20 +159,13 @@ const Navbar = ({ position }) => {
                 </div>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="btn btn-primary"
-                style={{ marginLeft: "2rem" }}
-              >
+              <Link to="/login" className="btn btn-primary" style={{ marginLeft: "1rem" }}>
                 Login
               </Link>
             )}
 
             {/* Mobile menu toggle */}
-            <button
-              className="navbar-toggle"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
+            <button className="navbar-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -251,26 +194,19 @@ const Navbar = ({ position }) => {
         </div>
 
         {/* Mobile menu */}
-        <div
-          className={`mobile-menu ${isMenuOpen ? "open" : ""}`}
-          ref={menuRef}
-        >
+        <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
           <div className="mobile-menu-container">
             <ul className="mobile-menu-list">
               {navigationLinks.main.map((link) => (
                 <li key={link.path} className="mobile-menu-item">
-                  {link.name === "Categories" ? (
+                  {link.name === "Shop" ? (
                     <div className="mobile-dropdown">
                       <button className="mobile-dropdown-toggle">
                         {link.name} <ChevronDown size={16} />
                       </button>
                       <div className="mobile-dropdown-menu">
                         {navigationLinks.categories.map((category) => (
-                          <Link
-                            key={category.path}
-                            to={category.path}
-                            onClick={() => setIsMenuOpen(false)}
-                          >
+                          <Link key={category.path} to={category.path} onClick={() => setIsMenuOpen(false)}>
                             {category.name}
                           </Link>
                         ))}
@@ -279,9 +215,7 @@ const Navbar = ({ position }) => {
                   ) : (
                     <Link
                       to={link.path}
-                      className={
-                        location.pathname === link.path ? "active" : ""
-                      }
+                      className={location.pathname === link.path ? "active" : ""}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.name}
@@ -293,11 +227,7 @@ const Navbar = ({ position }) => {
 
             {!isAuthenticated && (
               <div className="mobile-menu-footer">
-                <Link
-                  to="/login"
-                  className="btn btn-primary"
-                  onClick={() => setIsMenuOpen(false)}
-                >
+                <Link to="/login" className="btn btn-primary" onClick={() => setIsMenuOpen(false)}>
                   Login / Sign Up
                 </Link>
               </div>
@@ -306,7 +236,7 @@ const Navbar = ({ position }) => {
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

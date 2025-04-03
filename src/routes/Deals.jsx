@@ -1,14 +1,23 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { Link } from "react-router-dom"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import ProductCard from "../components/ProductCard"
-import "../styles/Deals.css"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import { Clock, Tag, Percent, ChevronLeft, ChevronRight, AlertCircle, ShoppingBag } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ProductCard from "../components/ProductCard";
+import "../styles/Deals.css";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import {
+  Clock,
+  Tag,
+  Percent,
+  ChevronLeft,
+  ChevronRight,
+  AlertCircle,
+  ShoppingBag,
+} from "lucide-react";
+import PageHeader from "../components/PageHeader";
 
 const Deals = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -16,11 +25,11 @@ const Deals = () => {
     hours: 14,
     minutes: 36,
     seconds: 59,
-  })
-  const dealsRef = useRef(null)
-  const flashDealsRef = useRef(null)
-  const weeklyDealsRef = useRef(null)
-  const clearanceRef = useRef(null)
+  });
+  const dealsRef = useRef(null);
+  const flashDealsRef = useRef(null);
+  const weeklyDealsRef = useRef(null);
+  const clearanceRef = useRef(null);
 
   // Sample deals data
   const flashDeals = [
@@ -30,7 +39,8 @@ const Deals = () => {
       category: "Electronics",
       price: 79.99,
       salePrice: 39.99,
-      image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=500&q=60",
       discount: 50,
       rating: 4.5,
       reviews: 128,
@@ -42,7 +52,8 @@ const Deals = () => {
       category: "Electronics",
       price: 99.99,
       salePrice: 59.99,
-      image: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?auto=format&fit=crop&w=500&q=60",
       discount: 40,
       rating: 4.3,
       reviews: 95,
@@ -54,7 +65,8 @@ const Deals = () => {
       category: "Electronics",
       price: 69.99,
       salePrice: 34.99,
-      image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=500&q=60",
       discount: 50,
       rating: 4.7,
       reviews: 112,
@@ -66,13 +78,14 @@ const Deals = () => {
       category: "Home & Kitchen",
       price: 29.99,
       salePrice: 17.99,
-      image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=500&q=60",
       discount: 40,
       rating: 4.8,
       reviews: 76,
       sale: true,
     },
-  ]
+  ];
 
   const weeklyDeals = [
     {
@@ -81,7 +94,8 @@ const Deals = () => {
       category: "Home & Office",
       price: 199.99,
       salePrice: 149.99,
-      image: "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=500&q=60",
       discount: 25,
       rating: 4.6,
       reviews: 89,
@@ -93,7 +107,8 @@ const Deals = () => {
       category: "Home & Kitchen",
       price: 129.99,
       salePrice: 89.99,
-      image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=500&q=60",
       discount: 30,
       rating: 4.4,
       reviews: 67,
@@ -105,7 +120,8 @@ const Deals = () => {
       category: "Electronics",
       price: 49.99,
       salePrice: 29.99,
-      image: "https://images.unsplash.com/photo-1618577608401-46f4a95e0e4d?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1618577608401-46f4a95e0e4d?auto=format&fit=crop&w=500&q=60",
       discount: 40,
       rating: 4.2,
       reviews: 54,
@@ -117,13 +133,14 @@ const Deals = () => {
       category: "Home & Kitchen",
       price: 59.99,
       salePrice: 39.99,
-      image: "https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?auto=format&fit=crop&w=500&q=60",
       discount: 33,
       rating: 4.5,
       reviews: 42,
       sale: true,
     },
-  ]
+  ];
 
   const clearanceItems = [
     {
@@ -132,7 +149,8 @@ const Deals = () => {
       category: "Fashion",
       price: 89.99,
       salePrice: 44.99,
-      image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=500&q=60",
       discount: 50,
       rating: 4.3,
       reviews: 38,
@@ -144,7 +162,8 @@ const Deals = () => {
       category: "Electronics",
       price: 79.99,
       salePrice: 39.99,
-      image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=500&q=60",
       discount: 50,
       rating: 4.1,
       reviews: 29,
@@ -156,7 +175,8 @@ const Deals = () => {
       category: "Home & Kitchen",
       price: 249.99,
       salePrice: 149.99,
-      image: "https://images.unsplash.com/photo-1584990347449-a43d9a9b7975?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1584990347449-a43d9a9b7975?auto=format&fit=crop&w=500&q=60",
       discount: 40,
       rating: 4.7,
       reviews: 52,
@@ -168,54 +188,55 @@ const Deals = () => {
       category: "Electronics",
       price: 119.99,
       salePrice: 69.99,
-      image: "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?auto=format&fit=crop&w=500&q=60",
+      image:
+        "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?auto=format&fit=crop&w=500&q=60",
       discount: 42,
       rating: 4.4,
       reviews: 47,
       sale: true,
     },
-  ]
+  ];
 
   // Countdown timer
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
-        const newSeconds = prevTime.seconds - 1
+        const newSeconds = prevTime.seconds - 1;
 
         if (newSeconds < 0) {
-          const newMinutes = prevTime.minutes - 1
+          const newMinutes = prevTime.minutes - 1;
 
           if (newMinutes < 0) {
-            const newHours = prevTime.hours - 1
+            const newHours = prevTime.hours - 1;
 
             if (newHours < 0) {
-              const newDays = prevTime.days - 1
+              const newDays = prevTime.days - 1;
 
               if (newDays < 0) {
                 // Timer ended
-                clearInterval(timer)
-                return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+                clearInterval(timer);
+                return { days: 0, hours: 0, minutes: 0, seconds: 0 };
               }
 
-              return { days: newDays, hours: 23, minutes: 59, seconds: 59 }
+              return { days: newDays, hours: 23, minutes: 59, seconds: 59 };
             }
 
-            return { ...prevTime, hours: newHours, minutes: 59, seconds: 59 }
+            return { ...prevTime, hours: newHours, minutes: 59, seconds: 59 };
           }
 
-          return { ...prevTime, minutes: newMinutes, seconds: 59 }
+          return { ...prevTime, minutes: newMinutes, seconds: 59 };
         }
 
-        return { ...prevTime, seconds: newSeconds }
-      })
-    }, 1000)
+        return { ...prevTime, seconds: newSeconds };
+      });
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, []);
 
   // Animations
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
 
     // Flash deals animation
     if (flashDealsRef.current) {
@@ -232,8 +253,8 @@ const Deals = () => {
             trigger: flashDealsRef.current,
             start: "top 80%",
           },
-        },
-      )
+        }
+      );
     }
 
     // Weekly deals animation
@@ -251,8 +272,8 @@ const Deals = () => {
             trigger: weeklyDealsRef.current,
             start: "top 80%",
           },
-        },
-      )
+        }
+      );
     }
 
     // Clearance animation
@@ -270,21 +291,21 @@ const Deals = () => {
             trigger: clearanceRef.current,
             start: "top 80%",
           },
-        },
-      )
+        }
+      );
     }
-  }, [])
+  }, []);
 
   return (
     <>
       <Navbar />
       <div className="deals-page" ref={dealsRef}>
-        <div className="page-header">
-          <div className="container">
-            <h1>Deals & Promotions</h1>
-            <p>Discover our best offers, discounts, and special promotions</p>
-          </div>
-        </div>
+        <PageHeader
+          title="Deals & Promotions"
+          subtitle="Discover our best offers, discounts, and special promotions"
+          theme="gradient"
+          size="medium"
+        />
 
         {/* Flash Deals Section */}
         <section className="section flash-deals-section">
@@ -303,17 +324,23 @@ const Deals = () => {
                   </div>
                   <div className="timer-separator">:</div>
                   <div className="timer-unit">
-                    <span className="timer-value">{timeLeft.hours.toString().padStart(2, "0")}</span>
+                    <span className="timer-value">
+                      {timeLeft.hours.toString().padStart(2, "0")}
+                    </span>
                     <span className="timer-label">Hours</span>
                   </div>
                   <div className="timer-separator">:</div>
                   <div className="timer-unit">
-                    <span className="timer-value">{timeLeft.minutes.toString().padStart(2, "0")}</span>
+                    <span className="timer-value">
+                      {timeLeft.minutes.toString().padStart(2, "0")}
+                    </span>
                     <span className="timer-label">Mins</span>
                   </div>
                   <div className="timer-separator">:</div>
                   <div className="timer-unit">
-                    <span className="timer-value">{timeLeft.seconds.toString().padStart(2, "0")}</span>
+                    <span className="timer-value">
+                      {timeLeft.seconds.toString().padStart(2, "0")}
+                    </span>
                     <span className="timer-label">Secs</span>
                   </div>
                 </div>
@@ -347,10 +374,14 @@ const Deals = () => {
                   <span className="discount-badge">40% OFF</span>
                 </div>
                 <p>
-                  Experience crystal-clear sound and immersive audio with these premium wireless headphones featuring
-                  active noise cancellation and 30-hour battery life.
+                  Experience crystal-clear sound and immersive audio with these
+                  premium wireless headphones featuring active noise
+                  cancellation and 30-hour battery life.
                 </p>
-                <Link to="/products/headphones-123" className="btn btn-primary btn-large">
+                <Link
+                  to="/products/headphones-123"
+                  className="btn btn-primary btn-large"
+                >
                   Shop Now
                 </Link>
               </div>
@@ -405,7 +436,9 @@ const Deals = () => {
                 <h2 className="section-title">Clearance Sale</h2>
               </div>
             </div>
-            <p className="section-subtitle">Up to 70% off! Limited quantities available.</p>
+            <p className="section-subtitle">
+              Up to 70% off! Limited quantities available.
+            </p>
 
             <div className="products-grid" ref={clearanceRef}>
               {clearanceItems.map((product) => (
@@ -427,9 +460,16 @@ const Deals = () => {
             <div className="newsletter-card">
               <div className="newsletter-content">
                 <h2>Get Exclusive Deals</h2>
-                <p>Subscribe to our newsletter and be the first to know about our special offers and promotions.</p>
+                <p>
+                  Subscribe to our newsletter and be the first to know about our
+                  special offers and promotions.
+                </p>
                 <form className="newsletter-form">
-                  <input type="email" placeholder="Your email address" required />
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    required
+                  />
                   <button type="submit" className="btn">
                     Subscribe
                   </button>
@@ -457,8 +497,7 @@ const Deals = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Deals
-
+export default Deals;

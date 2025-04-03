@@ -82,6 +82,97 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
   --container-2xl: 1536px;
+
+  /* Base colors */
+  --background: #ffffff;
+  --surface: #f8f9fa;
+  --text-primary: #121212;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #767676;
+  --border: #e0e0e0;
+
+  /* Brand colors */
+  --primary: #0066ff;
+  --primary-dark: #0052cc;
+  --primary-light: #e6f0ff;
+  --secondary: #f5f5f7;
+  --secondary-light: #fafafa;
+  --accent: #00c2ff;
+  --accent-light: #e6f9ff;
+
+  /* UI colors */
+  --success: #00c853;
+  --error: #ff3b30;
+  --warning: #ffcc00;
+  --info: #0066ff;
+
+  /* Shadows */
+  --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-m: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-l: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.12);
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-s: 0.5rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
+
+  /* Border radius */
+  --border-radius-s: 4px;
+  --border-radius-m: 8px;
+  --border-radius-l: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-xxl: 24px;
+  --border-radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+
+  /* Font families */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
+}
+
+/* Dark mode theme */
+[data-theme="dark"] {
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #a0a0a0;
+  --border: #333333;
+
+  /* Brand colors in dark mode */
+  --primary: #0080ff;
+  --primary-dark: #0066cc;
+  --primary-light: #1a3b66;
+  --secondary: #1a1a1a;
+  --secondary-light: #2a2a2a;
+  --accent: #00c2ff;
+  --accent-light: #1a3b4d;
+
+  /* Shadows in dark mode */
+  --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-m: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-l: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* Base styles */
@@ -97,13 +188,14 @@ html {
 }
 
 body {
-  font-family: var(--font-primary);
+  font-family: var(--font-body);
   background-color: var(--background);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Typography - refined */
@@ -156,6 +248,7 @@ a {
   text-decoration: none;
   transition: color var(--transition-fast);
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 a:hover {
@@ -179,6 +272,8 @@ a:hover {
   line-height: 1.5;
   letter-spacing: 0.01em;
   box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
@@ -229,7 +324,7 @@ a:hover {
 
 /* Container */
 .container {
-  width: 95%;
+  width: 100%;
   max-width: var(--container-xl);
   margin: 0 auto;
   padding: 0 var(--spacing-l);
@@ -237,7 +332,7 @@ a:hover {
 
 /* Section */
 .section {
-  padding: var(--spacing-4xl) 0;
+  padding: var(--spacing-xxl) 0;
 }
 
 /* Utilities */
@@ -368,8 +463,6 @@ a:hover {
   padding-right: var(--spacing-xl);
 }
 
-
-
 @media (max-width: 1024px) {
   .container {
     max-width: var(--container-md);
@@ -419,5 +512,36 @@ a:hover {
   h1 {
     font-size: 2.25rem;
   }
+}
+
+/* Add this to ensure all images have proper transitions */
+img {
+  transition: transform 0.3s ease;
+}
+
+/* Add this for better button styling */
+button,
+.btn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Add this for better form styling */
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
 }
 

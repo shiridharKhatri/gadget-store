@@ -1,42 +1,40 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import { Link } from "react-router-dom";
-import { gsap } from "gsap";
-import { useCart } from "../context/CartContext";
-import "../styles/Cart.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { useRef } from "react"
+import { Link } from "react-router-dom"
+import { gsap } from "gsap"
+import { useCart } from "../context/CartContext"
+import "../styles/Cart.css"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 const Cart = () => {
-  const { cartItems, updateQuantity, removeFromCart, getCartTotal } = useCart();
-  const cartRef = useRef(null);
+  const { cartItems, updateQuantity, removeFromCart, getCartTotal } = useCart()
+  const cartRef = useRef(null)
 
   const handleQuantityChange = (productId, newQuantity) => {
-    if (newQuantity < 1) return;
-    updateQuantity(productId, newQuantity);
-  };
+    if (newQuantity < 1) return
+    updateQuantity(productId, newQuantity)
+  }
 
   const handleRemoveItem = (productId) => {
     // Animate item removal
-    const itemElement = document.querySelector(
-      `[data-product-id="${productId}"]`
-    );
+    const itemElement = document.querySelector(`[data-product-id="${productId}"]`)
 
     gsap.to(itemElement, {
       x: -100,
       opacity: 0,
       duration: 0.3,
       onComplete: () => {
-        removeFromCart(productId);
+        removeFromCart(productId)
       },
-    });
-  };
+    })
+  }
 
-  const subtotal = getCartTotal();
-  const shipping = subtotal > 0 ? 5.99 : 0;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax;
+  const subtotal = getCartTotal()
+  const shipping = subtotal > 0 ? 5.99 : 0
+  const tax = subtotal * 0.08
+  const total = subtotal + shipping + tax
 
   return (
     <>
@@ -56,7 +54,7 @@ const Cart = () => {
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "flex-start",
-            width:"90%",
+            width: "90%",
             margin: "auto",
           }}
         >
@@ -84,45 +82,26 @@ const Cart = () => {
                   </div>
 
                   {cartItems.map((item) => (
-                    <div
-                      className="cart-item"
-                      key={item.id}
-                      data-product-id={item.id}
-                    >
+                    <div className="cart-item" key={item.id} data-product-id={item.id}>
                       <div className="cart-item-product">
                         <div className="cart-item-image">
-                          <img
-                            src={
-                             "/placeholder.png"
-                            }
-                            alt={item.title}
-                          />
+                          <img src={"/placeholder.png"} alt={item.title} />
                         </div>
                         <div className="cart-item-details">
                           <h3 className="cart-item-title">{item.title}</h3>
                           <div className="cart-item-meta">
-                            <span className="cart-item-category">
-                              {item.category}
-                            </span>
-                            {item.selectedColor && (
-                              <span className="cart-item-color">
-                                Color: {item.selectedColor}
-                              </span>
-                            )}
+                            <span className="cart-item-category">{item.category}</span>
+                            {item.selectedColor && <span className="cart-item-color">Color: {item.selectedColor}</span>}
                           </div>
                         </div>
                       </div>
 
-                      <div className="cart-item-price">
-                        ${(item.salePrice || item.price).toFixed(2)}
-                      </div>
+                      <div className="cart-item-price">${(item.salePrice || item.price).toFixed(2)}</div>
 
                       <div className="cart-item-quantity">
                         <div className="quantity-selector">
                           <button
-                            onClick={() =>
-                              handleQuantityChange(item.id, item.quantity - 1)
-                            }
+                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                             className="quantity-btn"
                             disabled={item.quantity <= 1}
                           >
@@ -133,18 +112,11 @@ const Cart = () => {
                             min="1"
                             max="10"
                             value={item.quantity}
-                            onChange={(e) =>
-                              handleQuantityChange(
-                                item.id,
-                                Number.parseInt(e.target.value) || 1
-                              )
-                            }
+                            onChange={(e) => handleQuantityChange(item.id, Number.parseInt(e.target.value) || 1)}
                             readOnly
                           />
                           <button
-                            onClick={() =>
-                              handleQuantityChange(item.id, item.quantity + 1)
-                            }
+                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                             className="quantity-btn"
                             disabled={item.quantity >= 10}
                           >
@@ -154,17 +126,11 @@ const Cart = () => {
                       </div>
 
                       <div className="cart-item-total">
-                        $
-                        {(
-                          (item.salePrice || item.price) * item.quantity
-                        ).toFixed(2)}
+                        ${((item.salePrice || item.price) * item.quantity).toFixed(2)}
                       </div>
 
                       <div className="cart-item-actions">
-                        <button
-                          className="remove-item-btn"
-                          onClick={() => handleRemoveItem(item.id)}
-                        >
+                        <button className="remove-item-btn" onClick={() => handleRemoveItem(item.id)}>
                           ✕
                         </button>
                       </div>
@@ -278,7 +244,8 @@ const Cart = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
+

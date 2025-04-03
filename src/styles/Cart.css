@@ -15,11 +15,11 @@
   box-shadow: var(--shadow-s);
   overflow: hidden;
 }
-.btn-large{
-  width: 100% ;
+.btn-large {
+  width: 100%;
 }
-.btn-secondary{
-  width: 100% ;
+.btn-secondary {
+  width: 100%;
 }
 
 .cart-header {

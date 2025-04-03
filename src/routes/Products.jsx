@@ -7,110 +7,9 @@ import ProductCard from "../components/ProductCard"
 import "../styles/Products.css"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import PageHeader from "../components/PageHeader"
 import { useProduct } from "../context/ProductContext"
 import Loader from "../components/Loader"
-
-// const allProducts = [
-//   {
-//     id: "1",
-//     title: "Gratitude Journal",
-//     category: "Journals",
-//     price: 29.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "2",
-//     title: "Daily Reflection Diary",
-//     category: "Diaries",
-//     price: 34.99,
-//     salePrice: 29.99,
-//     image: "/placeholder.png",
-//     sale: true,
-//   },
-//   {
-//     id: "3",
-//     title: "Mindfulness Poster",
-//     category: "Posters",
-//     price: 19.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "4",
-//     title: "Dream Journal",
-//     category: "Journals",
-//     price: 24.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "5",
-//     title: "Self-Care Planner",
-//     category: "Journals",
-//     price: 32.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "6",
-//     title: "Goal Setting Journal",
-//     category: "Journals",
-//     price: 27.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "7",
-//     title: "Travel Diary",
-//     category: "Diaries",
-//     price: 26.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "8",
-//     title: "Inspirational Quote Poster",
-//     category: "Posters",
-//     price: 18.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "9",
-//     title: "Wellness Journal",
-//     category: "Journals",
-//     price: 29.99,
-//     salePrice: 24.99,
-//     image: "/placeholder.png",
-//     sale: true,
-//   },
-//   {
-//     id: "10",
-//     title: "Five Year Memory Book",
-//     category: "Diaries",
-//     price: 39.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-//   {
-//     id: "11",
-//     title: "Nature Art Poster",
-//     category: "Posters",
-//     price: 21.99,
-//     salePrice: 17.99,
-//     image: "/placeholder.png",
-//     sale: true,
-//   },
-//   {
-//     id: "12",
-//     title: "Habit Tracker Journal",
-//     category: "Journals",
-//     price: 25.99,
-//     image: "/placeholder.png",
-//     sale: false,
-//   },
-// ];
 
 const Products = () => {
   const { fetchProducts } = useProduct()
@@ -152,7 +51,7 @@ const Products = () => {
     }
 
     setFilteredProducts(result)
-  }, [activeCategory, sortOption])
+  }, [activeCategory, sortOption, allProducts])
 
   // Animation for category changes
   useEffect(() => {
@@ -190,7 +89,7 @@ const Products = () => {
       } else {
         products = await fetchProducts()
       }
-      if (products.success) {
+      if (products?.success) {
         setAllProducts(products.products)
         setLoading(false)
       }
@@ -198,21 +97,18 @@ const Products = () => {
     fetchProd()
   }, [])
 
-  const categories = ["All", "Journals", "Diaries", "Posters"]
+  const categories = ["All", "Earbuds", "Smartwatches", "Headphones", "Accessories", "Smart Home"]
 
   return (
     <>
       <Navbar />
       <div className="products-page">
-        <div className="page-header">
-          <div className="container">
-            <h1>Our Products</h1>
-            <p>
-              Discover our collection of journals, diaries, and posters designed to inspire and elevate your daily
-              practice.
-            </p>
-          </div>
-        </div>
+        <PageHeader
+          title="Shop Our Collection"
+          subtitle="Discover premium tech accessories designed to enhance your digital lifestyle."
+          theme="dark"
+          size="medium"
+        />
 
         <section className="section">
           <div className="container">
@@ -224,7 +120,6 @@ const Products = () => {
                     className={`category-btn ${activeCategory === category ? "active" : ""}`}
                     onClick={() => handleCategoryChange(category)}
                   >
-                    {console.log(category, activeCategory)}
                     {category}
                   </button>
                 ))}

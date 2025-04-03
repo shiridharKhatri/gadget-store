@@ -93,10 +93,7 @@ const Wishlist = () => {
               {wishlistItems.map((item) => (
                 <div className="wishlist-item" key={item.id}>
                   <div className="wishlist-item-image">
-                    <img
-                      src={ "/placeholder.png"}
-                      alt={item.title}
-                    />
+                    <img src={"/placeholder.png"} alt={item.title} />
                   </div>
                   <div className="wishlist-item-details">
                     <Link to={`/products/${item.id}`} className="wishlist-item-title">
