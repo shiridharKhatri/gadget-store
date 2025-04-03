@@ -102,17 +102,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="footer-newsletter">
-          <h4>Stay Updated</h4>
-          <p>Subscribe to our newsletter for the latest product releases and exclusive offers.</p>
-          <form className="newsletter-form">
-            <input type="email" placeholder="Your email address" required />
-            <button type="submit" className="btn">
-              Subscribe
-            </button>
-          </form>
-        </div>
-
         <div className="footer-bottom">
           <div className="first">
             <p>&copy; {new Date().getFullYear()} TechWave. All rights reserved.</p>

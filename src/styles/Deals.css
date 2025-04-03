@@ -1,4 +1,7 @@
-
+/* Base styles */
+.deals-page {
+  margin-top: 80px;
+}
 
 /* Flash Deals Section - Enhanced */
 .flash-deals-section {
@@ -15,22 +18,11 @@
   gap: var(--spacing-m);
 }
 
-.section-title-wrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-s);
-}
-
-.section-icon {
-  color: var(--primary);
-}
-
 .section-title {
   margin: 0;
   font-size: 2.25rem;
   font-weight: 700;
   color: var(--primary);
-  margin-top: 5rem;
 }
 
 .section-subtitle {
@@ -115,17 +107,18 @@
 
 /* Deal of the Day - Enhanced */
 .deal-of-the-day {
-  background-color: var(--freeze-purple);
+  background-color: var(--surface);
   padding: var(--spacing-4xl) 0;
 }
 
 .deal-of-day-card {
   display: flex;
-  background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);
+  background: var(--card);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-m);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border);
 }
 
 .deal-of-day-card:hover {
@@ -226,7 +219,7 @@
 
 /* Clearance Section - Enhanced */
 .clearance-section {
-  background-color: var(--medium-purple);
+  background-color: var(--surface);
   padding: var(--spacing-4xl) 0;
 }
 
@@ -249,11 +242,12 @@
 
 .newsletter-card {
   display: flex;
-  background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);
+  background: var(--card);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-m);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border);
 }
 
 .newsletter-card:hover {
