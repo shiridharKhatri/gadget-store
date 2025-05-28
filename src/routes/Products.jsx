@@ -10,6 +10,8 @@ import Footer from "../components/Footer"
 import PageHeader from "../components/PageHeader"
 import { useProduct } from "../context/ProductContext"
 import Loader from "../components/Loader"
+import { Helmet } from "react-helmet"
+import { products } from "../data/data"
 
 const Products = () => {
   const { fetchProducts } = useProduct()
@@ -35,7 +37,6 @@ const Products = () => {
   useEffect(() => {
     let result = [...allProducts]
 
-    // Apply category filter
     if (activeCategory !== "All") {
       result = result.filter((product) => product.category === activeCategory)
     }
@@ -82,25 +83,24 @@ const Products = () => {
   }
 
   useEffect(() => {
-    const fetchProd = async () => {
-      let products
-      if (activeCategory) {
-        products = await fetchProducts(activeCategory)
-      } else {
-        products = await fetchProducts()
-      }
-      if (products?.success) {
-        setAllProducts(products.products)
-        setLoading(false)
-      }
-    }
-    fetchProd()
+    // Use static data instead of fetching
+    setAllProducts(products)
+    setLoading(false)
   }, [])
 
   const categories = ["All", "Earbuds", "Smartwatches", "Headphones", "Accessories", "Smart Home"]
 
   return (
     <>
+      <Helmet>
+        <title>Shop Our Collection | TechWave</title>
+        <meta
+          name="description"
+          content="Browse our collection of premium tech accessories including headphones, earbuds, smartwatches and more."
+        />
+        <meta name="keywords" content="tech shop, headphones, earbuds, smartwatches, accessories" />
+        <link rel="canonical" href="https://techwave.com/products" />
+      </Helmet>
       <Navbar />
       <div className="products-page">
         <PageHeader
@@ -162,4 +162,3 @@ const Products = () => {
 }
 
 export default Products
-

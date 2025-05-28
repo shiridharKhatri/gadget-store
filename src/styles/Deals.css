@@ -195,7 +195,6 @@
 
 .deal-image {
   flex: 1;
-  height: 450px;
   position: relative;
   overflow: hidden;
 }
@@ -304,7 +303,6 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   background-color: var(--primary);
-  color: white;
   font-weight: 600;
   padding: 0 var(--spacing-l);
 }
@@ -376,7 +374,6 @@
 
   .deal-image,
   .newsletter-image {
-    height: 300px;
     width: 100%;
   }
 

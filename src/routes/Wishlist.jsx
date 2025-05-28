@@ -8,6 +8,7 @@ import { Heart, ShoppingBag, Trash2, AlertCircle } from "lucide-react"
 import "../styles/Wishlist.css"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import { Helmet } from "react-helmet"
 
 const Wishlist = () => {
   const { wishlistItems, removeFromWishlist, clearWishlist } = useWishlist()
@@ -41,6 +42,11 @@ const Wishlist = () => {
   if (isLoading) {
     return (
       <>
+        <Helmet>
+          <title>My Wishlist | TechWave</title>
+          <meta name="description" content="View and manage your saved items in your TechWave wishlist." />
+          <link rel="canonical" href="https://techwave.com/wishlist" />
+        </Helmet>
         <Navbar position={"relative"} />
         <div className="wishlist-container loading">
           <div className="wishlist-loading">
@@ -55,6 +61,11 @@ const Wishlist = () => {
 
   return (
     <>
+      <Helmet>
+        <title>My Wishlist | TechWave</title>
+        <meta name="description" content="View and manage your saved items in your TechWave wishlist." />
+        <link rel="canonical" href="https://techwave.com/wishlist" />
+      </Helmet>
       <Navbar position={"relative"} />
       <div className="wishlist-container">
         <div className="wishlist-header">
@@ -143,4 +154,3 @@ const Wishlist = () => {
 }
 
 export default Wishlist
-

@@ -113,6 +113,7 @@ const Newsletter = () => {
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  className="newsletter-input"
                 />
               </div>
 
@@ -124,6 +125,7 @@ const Newsletter = () => {
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="newsletter-input"
                 />
               </div>
 
@@ -147,4 +149,3 @@ const Newsletter = () => {
 }
 
 export default Newsletter
-

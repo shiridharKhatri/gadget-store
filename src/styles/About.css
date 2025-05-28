@@ -352,7 +352,7 @@
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-s);
   background-color: var(--primary);
-  color: white;
+  color: var(--background);
   border-radius: var(--border-radius-s);
   font-weight: 600;
   margin-bottom: var(--spacing-s);

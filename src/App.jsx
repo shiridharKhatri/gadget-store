@@ -21,6 +21,7 @@ import Orders from "./routes/Orders"
 import PrivacyPolicy from "./routes/PrivacyPolicy"
 import TermsAndConditions from "./routes/TermsAndConditions"
 import ChatBubble from "./components/ChatBubble"
+import { HelmetProvider } from "react-helmet-async"
 
 function App() {
   const router = createBrowserRouter([
@@ -111,12 +112,11 @@ function App() {
   ])
 
   return (
-    <>
+    <HelmetProvider>
       <RouterProvider router={router} />
       <ChatBubble />
-    </>
+    </HelmetProvider>
   )
 }
 
 export default App
-

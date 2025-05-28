@@ -1,10 +1,6 @@
 /* Top Banner */
 .top-banner {
-  background: linear-gradient(
-    90deg,
-    var(--primary) 0%,
-    var(--primary-dark) 100%
-  );
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
   text-align: center;
   padding: var(--spacing-s);
@@ -50,33 +46,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: -1;
+  overflow: hidden;
 }
 
-.hero-bg-pattern {
+.dark .hero-bg {
+  background-color: var(--background);
+}
+
+.hero-bg-gradient {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(var(--primary-light) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.5;
-}
-
-.hero-bg-gradient {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at center,
-    var(--primary-light) 0%,
-    transparent 50%
-  );
-  opacity: 0.4;
-  transform: rotate(-15deg);
+  background: linear-gradient(to right, var(--background) 0%, transparent 100%);
 }
 
 .hero-container {
@@ -519,24 +503,15 @@
 
 .deal-card {
   display: flex;
-  align-items: center;
-  background: var(--background);
-  border-radius: 20px;
+  background-color: var(--card);
+  border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: var(--shadow-l);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-[data-theme="dark"] .deal-card {
-  background: var(--glass-background);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-}
-
-.deal-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-xl);
+.dark .deal-card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .deal-content {
@@ -649,7 +624,6 @@
 
 .deal-image {
   flex: 1;
-  height: 500px;
   position: relative;
   overflow: hidden;
 }
@@ -763,7 +737,6 @@
   font-size: 3rem;
   line-height: 1;
   color: var(--primary);
-  margin-bottom: 1.5rem;
 }
 
 .testimonial-content {

@@ -10,13 +10,12 @@ import Footer from "../components/Footer"
 const Categories = () => {
   const categoriesRef = useRef(null)
 
-  // Replace the existing categories array with this new tech-focused categories array
   const categories = [
     {
       id: 1,
       name: "Earbuds",
       description: "Premium wireless earbuds with noise cancellation and crystal-clear sound quality.",
-      image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=500&q=60",
+      image: "/category/earbuds.jpg",
       count: "120+ products",
       slug: "earbuds",
       featured: true,
@@ -25,7 +24,7 @@ const Categories = () => {
       id: 2,
       name: "Smartwatches",
       description: "Stay connected with stylish smartwatches featuring health tracking and smart notifications.",
-      image: "https://images.unsplash.com/photo-1544117519-31a4a39819a0?auto=format&fit=crop&w=500&q=60",
+      image: "/category/smartwatche.jpg",
       count: "85+ products",
       slug: "smartwatches",
       featured: true,
@@ -167,7 +166,6 @@ const Categories = () => {
         </section>
 
         {/* Update the promotion section to match the new tech focus */}
-        {/* Replace the promotion section with this updated version */}
         <section className="section category-promotion">
           <div className="container">
             <div className="promotion-card">

@@ -6,9 +6,9 @@
   --primary-light: rgba(0, 0, 0, 0.1);
   --primary-dark: #111111;
 
-  --secondary: #ffb766; /* Grandpa Orange */
+  /* --secondary: #ffb766;  */
   --secondary-light: rgba(255, 183, 102, 0.1);
-  --secondary-dark: #ff9933;
+  /* --secondary-dark: #ff9933; */
 
   --accent: #68d388; /* Live Green */
   --accent-light: rgba(104, 211, 136, 0.1);
@@ -109,9 +109,9 @@
   --primary-dark: #e6e6e6;
   --primary-light: rgba(255, 255, 255, 0.2);
 
-  --secondary: #ffc880; 
+  /* --secondary: #ffc880;  */
   --secondary-light: rgba(255, 200, 128, 0.2);
-  --secondary-dark: #ffb766;
+  /* --secondary-dark: #ffb766; */
 
   --accent: #7ee29f; 
   --accent-light: rgba(126, 226, 159, 0.2);

@@ -140,7 +140,7 @@
 
 .add-to-cart-btn {
   background-color: var(--primary);
-  color: white;
+  color: var(--background);
   border: none;
   border-radius: 6px;
   padding: 0.7rem;
